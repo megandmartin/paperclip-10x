@@ -3,6 +3,8 @@
 <p align="center">An operator-focused UI contribution to <a href="https://github.com/paperclipai/paperclip">Paperclip</a>, directed by Megan (@megandmartin).</p>
 <p align="center"><a href="#try-the-workspace">Try the workspace</a> · <a href="doc/CONTRIBUTIONS.md">What this fork adds</a> · <a href="doc/UPSTREAM-REVIEW.md">Upstream review</a> · <a href="doc/VERIFICATION.md">Verification</a> · <a href="LICENSE">MIT license</a></p>
 
+[![Operator workspace checks](https://github.com/megandmartin/paperclip-10x/actions/workflows/operator-workspace.yml/badge.svg)](https://github.com/megandmartin/paperclip-10x/actions/workflows/operator-workspace.yml)
+
 ![Paperclip operator workspace showing attention items, team activity, work and monthly spend. Sample data.](doc/assets/operator-workspace-desktop.png)
 
 Paperclip already provides the machinery for coordinating agents: companies, tasks, approvals, budgets and execution. This fork explores a more composed way to see that work and choose the next action.

@@ -12,6 +12,7 @@ Checked 3 November 2026 (Singapore time). Evidence covers this fork’s local im
 | Complete UI suite (`corepack pnpm --dir ui exec vitest run`) | Passed: 232 files, 1,641 tests | Broad UI regression coverage |
 | Final UI typecheck | Passed | Includes the final component tests |
 | `pnpm test:operator:browser` | 13 scenarios passed | Offline exported previews, interactions, desktop/phone layouts and appearance |
+| [GitHub-hosted UI workflow](https://github.com/megandmartin/paperclip-10x/actions/runs/41503875003) | Passed on implementation commit `5ad1e054` | Fresh Linux install, UI typecheck, complete UI suite and all 13 offline-preview browser scenarios |
 | Existing Kanban component in isolated browser fixture | Passed | Sticky headers, bounded scroll, last-card access, keyboard scroll and drag callback |
 | `corepack pnpm test:run` | Not green: 1,687 passed, 5 failed, 1 skipped | Runner stopped after the first server group; subsequent groups were not reached |
 
@@ -35,7 +36,7 @@ pnpm test:operator:browser
 
 ## Fork automation
 
-Inherited release, container/runtime-image publishing and lockfile-bot jobs are restricted to `paperclipai/paperclip`. The fork has a dedicated read-only `Operator workspace` workflow for UI typecheck, the UI test suite and exported-preview browser checks. Workflow YAML was parsed locally; hosted CI results must be checked separately.
+Inherited release, container/runtime-image publishing and lockfile-bot jobs are restricted to `paperclipai/paperclip`. The fork has a dedicated read-only `Operator workspace` workflow for UI typecheck, the UI test suite and exported-preview browser checks. Workflow YAML was parsed locally. The hosted Operator workspace run passed; inherited publishing and lockfile jobs correctly skipped the fork.
 
 ## Remaining limits
 
