@@ -1,0 +1,45 @@
+name: Operator workspace
+
+on:
+  push:
+    paths:
+      - "ui/**"
+      - "scripts/build-operator-demo.mjs"
+      - "scripts/verify-operator-ui.mjs"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/operator-workspace.yml"
+  pull_request:
+    paths:
+      - "ui/**"
+      - "scripts/build-operator-demo.mjs"
+      - "scripts/verify-operator-ui.mjs"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/operator-workspace.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: operator-workspace-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 9.15.4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @paperclipai/ui typecheck
+      - run: pnpm --dir ui exec vitest run
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:operator:browser

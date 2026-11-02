@@ -60,3 +60,6 @@ tests/release-smoke/playwright-report/
 .superpowers/
 .claude/worktrees/
 .herenow
+
+# Generated self-contained operator previews
+ui/dist-operator/

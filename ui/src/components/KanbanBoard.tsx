@@ -108,20 +108,22 @@ function KanbanColumn({
         }`}
         title={`${statusLabel(status)}: ${issues.length}`}
       >
-        <StatusIcon status={status} />
-        <span className="mt-2 [writing-mode:vertical-rl] rotate-180 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
-          {statusLabel(status)}
-        </span>
-        <span className="mt-auto rounded-full bg-background px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-muted-foreground">
-          {issues.length}
-        </span>
+        <div className="sticky top-2 flex flex-col items-center gap-2">
+          <StatusIcon status={status} />
+          <span className="[writing-mode:vertical-rl] rotate-180 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+            {statusLabel(status)}
+          </span>
+          <span className="rounded-full bg-background px-1.5 py-0.5 text-[10px] font-medium tabular-nums text-muted-foreground">
+            {issues.length}
+          </span>
+        </div>
       </div>
     );
   }
 
   return (
     <div className={`flex flex-col shrink-0 transition-[width,min-width] ${isEmpty && !isOver ? "min-w-[48px] w-[48px]" : "min-w-[260px] w-[260px]"}`}>
-      <div className={`flex items-center gap-2 px-2 py-2 mb-1 ${isEmpty && !isOver ? "justify-center" : ""}`}>
+      <div className={`sticky top-0 z-10 flex items-center gap-2 bg-background px-2 py-2 mb-1 ${isEmpty && !isOver ? "justify-center" : ""}`}>
         <StatusIcon status={status} />
         {(!isEmpty || isOver) && (
           <>
@@ -347,26 +349,35 @@ export function KanbanBoard({
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <div className="flex gap-3 overflow-x-auto pb-4 -mx-2 px-2">
-        {boardStatuses.map((status) => (
-          <KanbanColumn
-            key={status}
-            status={status}
-            issues={columnIssues[status] ?? []}
-            agents={agents}
-            liveIssueIds={liveIssueIds}
-            compactCards={compactCards}
-            collapsed={collapsedStatusSet.has(status)}
-            visibleCount={visibleCountByStatus[status] ?? initialVisibleCount}
-            revealIncrement={revealIncrement}
-            onShowMore={() => {
-              setVisibleCountByStatus((current) => ({
-                ...current,
-                [status]: (current[status] ?? initialVisibleCount) + revealIncrement,
-              }));
-            }}
-          />
-        ))}
+      {/* One bounded scroll owner keeps both axes reachable and gives sticky
+          column headers the same scroll container as their cards. */}
+      <div
+        role="region"
+        aria-label="Task board"
+        tabIndex={0}
+        className="max-h-[70dvh] overflow-auto pb-4 -mx-2 px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      >
+        <div className="flex min-w-max gap-3">
+          {boardStatuses.map((status) => (
+            <KanbanColumn
+              key={status}
+              status={status}
+              issues={columnIssues[status] ?? []}
+              agents={agents}
+              liveIssueIds={liveIssueIds}
+              compactCards={compactCards}
+              collapsed={collapsedStatusSet.has(status)}
+              visibleCount={visibleCountByStatus[status] ?? initialVisibleCount}
+              revealIncrement={revealIncrement}
+              onShowMore={() => {
+                setVisibleCountByStatus((current) => ({
+                  ...current,
+                  [status]: (current[status] ?? initialVisibleCount) + revealIncrement,
+                }));
+              }}
+            />
+          ))}
+        </div>
       </div>
       <DragOverlay>
         {activeIssue ? (

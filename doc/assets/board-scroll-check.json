@@ -1,0 +1,131 @@
+{
+  "reviewedAt": "2026-11-03",
+  "scope": "Isolated production KanbanBoard and production ui/src/index.css; only router Link replaced by plain anchor as in existing unit test. Synthetic fixtures: 24 tasks for every status, Done collapsed, initialVisibleCount=50. Chromium desktop and narrow viewport, not a deployed backend or real mobile device.",
+  "desktop": {
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "dimensions": {
+      "height": 630,
+      "top": 144,
+      "bottom": 774,
+      "left": 40,
+      "right": 1240,
+      "clientWidth": 1200,
+      "clientHeight": 630,
+      "scrollWidth": 1700,
+      "scrollHeight": 2198,
+      "viewportHeight": 900,
+      "overflowX": "auto",
+      "overflowY": "auto"
+    },
+    "beforeHeaders": {
+      "todo": {
+        "x": 352,
+        "y": 152,
+        "width": 36.34375,
+        "height": 16
+      },
+      "inProgress": {
+        "x": 624,
+        "y": 152,
+        "width": 85.1875,
+        "height": 16
+      }
+    },
+    "afterHeaders": {
+      "todo": {
+        "x": 352,
+        "y": 152,
+        "width": 36.34375,
+        "height": 16
+      },
+      "inProgress": {
+        "x": 624,
+        "y": 152,
+        "width": 85.1875,
+        "height": 16
+      }
+    },
+    "collapsedBefore": {
+      "x": 926.484375,
+      "y": 177,
+      "width": 15,
+      "height": 30.421875
+    },
+    "collapsedAfter": {
+      "x": 926.484375,
+      "y": 176,
+      "width": 15,
+      "height": 30.421875
+    },
+    "lastCardRect": {
+      "x": 987,
+      "y": 679.75,
+      "width": 230,
+      "height": 63.25
+    },
+    "finalScroll": {
+      "scrollTop": 1568,
+      "scrollLeft": 500
+    },
+    "keyboard": {
+      "enteredByTab": true,
+      "arrowDownScrollTop": 33,
+      "arrowRightScrollLeft": 33,
+      "leftByShiftTab": true
+    },
+    "dragUpdates": [
+      {
+        "id": "backlog-1",
+        "data": {
+          "status": "todo"
+        }
+      }
+    ]
+  },
+  "mobile": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "dimensions": {
+      "top": 204,
+      "bottom": 794.796875,
+      "height": 590.796875,
+      "left": 40,
+      "right": 350,
+      "clientWidth": 310,
+      "scrollWidth": 1700,
+      "viewportHeight": 844
+    },
+    "lastCardRect": {
+      "x": 97,
+      "y": 700.75,
+      "width": 230,
+      "height": 63.25
+    }
+  },
+  "pageErrors": [],
+  "screenshots": [
+    "board-before-scroll.png",
+    "board-after-scroll.png"
+  ],
+  "assertionsPassed": [
+    "height bounded to 70dvh",
+    "native horizontal and vertical overflow",
+    "desktop board bottom within viewport",
+    "Todo and In Progress headers retain y after 500px vertical scroll",
+    "collapsed Done label retains y after 500px scroll",
+    "final card reachable at bottom/right",
+    "Tab enters named region; ArrowDown and ArrowRight scroll; Shift+Tab exits",
+    "cross-column drag reports original mutation callback",
+    "narrow viewport bounded and final card reachable",
+    "no browser page errors"
+  ],
+  "limitations": [
+    "Native scrollbar painting follows OS preferences; this does not prove always-visible scrollbars.",
+    "Fixture tests component geometry, not server-backed issue mutations, authentication, drag auto-scroll at every edge, Safari/Firefox, touch input or a physical mobile device."
+  ]
+}

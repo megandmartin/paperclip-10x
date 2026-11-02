@@ -3,6 +3,7 @@ import {
   CircleDot,
   Target,
   LayoutDashboard,
+  PanelsTopLeft,
   DollarSign,
   History,
   Search,
@@ -157,6 +158,7 @@ export function Sidebar() {
             );
           })()}
           <SidebarNavItem to="/dashboard" label="Dashboard" icon={LayoutDashboard} liveCount={liveRunCount} />
+          <SidebarNavItem to="/operator" label="Overview" icon={PanelsTopLeft} />
           <SidebarNavItem
             to="/inbox"
             label="Inbox"

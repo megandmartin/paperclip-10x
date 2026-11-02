@@ -105,6 +105,16 @@ describe("KanbanBoard", () => {
     document.body.innerHTML = "";
   });
 
+  it("lets keyboard users focus the named board scroll region", () => {
+    const { container } = renderBoard({ issues: createIssues(20, "todo") });
+    const board = container.querySelector<HTMLElement>('[role="region"][aria-label="Task board"]');
+
+    expect(board).not.toBeNull();
+    board?.focus();
+    expect(document.activeElement).toBe(board);
+    expect(board?.querySelector('a[href="/issues/PAP-1"]')).not.toBeNull();
+  });
+
   it("limits visible cards and reveals more cards per column", () => {
     const { container } = renderBoard({
       issues: createIssues(60, "todo"),

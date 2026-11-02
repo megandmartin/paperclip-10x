@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-11-02T18:43:20.011Z",
+  "scope": "Self-contained fixture preview, not authenticated server/device acceptance",
+  "browser": "Chromium",
+  "checks": [
+    "Offline standalone preview renders without API calls",
+    "Search finds task by title and clear filters restores recent work",
+    "Status filtering preserves company totals",
+    "Task detail opens, traps keyboard focus and returns focus on Escape",
+    "Attention review exposes approvals and review/blocked tasks",
+    "Tabs support arrow keys and synchronize navigation",
+    "Empty, loading, error/retry and overspend states remain truthful",
+    "Phone layout has no page overflow and decisions precede task list",
+    "Phone board scrolls within its region without page overflow",
+    "Dark appearance and reduced motion preserve the workspace",
+    "Exported optimizer direction works offline",
+    "Exported reimaginer direction works offline",
+    "Exported converter direction works offline"
+  ],
+  "consoleErrors": [],
+  "externalRequests": []
+}
